@@ -46,7 +46,10 @@ import androidx.navigation.NavHostController
 @SuppressLint("Range")
 @Composable
 fun HomeScreen(navController: NavHostController) {
+    // Remembering the state of the pager
     val pagerState = rememberPagerState(pageCount = { 100 })
+
+    // Column composable for arranging UI elements vertically
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -54,18 +57,22 @@ fun HomeScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // HorizontalPager composable for horizontally scrolling items
         HorizontalPager(
             state = pagerState,
             modifier = Modifier
                 .fillMaxSize()
                 .weight(1f)
         ) {
+            // Generating random data for each page
             val modelData = generateRandomData()
+            // Box composable for overlaying content on top of the image
             Box(
                 contentAlignment = Alignment.BottomStart,
                 modifier = Modifier
                     .fillMaxSize()
             ) {
+                // Image composable for displaying the profile image
                 Image(
                     painter = painterResource(id = modelData.image),
                     contentDescription = "Profile Image",
@@ -74,6 +81,7 @@ fun HomeScreen(navController: NavHostController) {
                         .fillMaxHeight(1f)
                         .aspectRatio(1f, matchHeightConstraintsFirst = true)
                 )
+                // Column composable for arranging content at the bottom of the image
                 Column(
                     modifier = Modifier
                         .align(Alignment.BottomStart)
@@ -90,12 +98,14 @@ fun HomeScreen(navController: NavHostController) {
                         )
                         .padding(start = 18.dp, end = 20.dp)
                 ) {
+                    // Row composable for arranging text and icons horizontally
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+                        // Text composable for displaying model name and age
                         Row {
                             Text(
                                 text = modelData.name,
@@ -112,6 +122,7 @@ fun HomeScreen(navController: NavHostController) {
                                     .padding(top = 8.dp)
                             )
                         }
+                        // Row composable for displaying distance with an icon
                         Row(
                             modifier = Modifier
                                 .background(color = Color.Transparent, shape = RectangleShape)
@@ -138,7 +149,9 @@ fun HomeScreen(navController: NavHostController) {
                             )
                         }
                     }
+                    // Spacer composable for adding space between elements
                     Spacer(modifier = Modifier.height(5.dp))
+                    // Text composable for displaying profession
                     Text(
                         text = modelData.profession,
                         fontSize = 22.sp,
@@ -148,6 +161,7 @@ fun HomeScreen(navController: NavHostController) {
                         )
                     )
                     Spacer(modifier = Modifier.height(5.dp))
+                    // Text composable for displaying description
                     Text(
                         text = modelData.description,
                         style = TextStyle(
@@ -156,14 +170,17 @@ fun HomeScreen(navController: NavHostController) {
                         fontSize = 20.sp,
                         modifier = Modifier.padding(bottom = 20.dp)
                     )
+                    // Row composable for arranging buttons horizontally
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.padding(bottom = 5.dp)
                     ) {
+                        // Box composable for centering the button
                         Box(
                             modifier = Modifier.fillMaxWidth(),
                             contentAlignment = Alignment.Center
                         ) {
+                            // Button composable for navigating to the profile
                             Button(
                                 onClick = {},
                                 shape = RoundedCornerShape(50), // Increase the corner radius for a more rounded look
@@ -172,22 +189,22 @@ fun HomeScreen(navController: NavHostController) {
                                     .shadow(5.dp, shape = RoundedCornerShape(50))
                             ) {
                                 Text(
-                                    text = "Profile",
-                                    color = Color.White,
+                                    text = "PROFILE",
                                     style = TextStyle(fontWeight = FontWeight.Bold)
                                 )
                             }
                         }
                     }
-
                 }
             }
         }
 
+        // Row composable for arranging buttons horizontally
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
+            // TextButton composable for navigating to the home screen (current screen)
             TextButton(onClick = { navController.navigate("home") }) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_home_filled_24),
@@ -197,6 +214,7 @@ fun HomeScreen(navController: NavHostController) {
                     colorFilter = ColorFilter.tint(LocalContentColor.current)
                 )
             }
+            // TextButton composable for navigating to the chat screen
             TextButton(onClick = { navController.navigate("chat") }) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_chat_24),
@@ -206,6 +224,7 @@ fun HomeScreen(navController: NavHostController) {
                     colorFilter = ColorFilter.tint(LocalContentColor.current)
                 )
             }
+            // TextButton composable for navigating to the profile screen
             TextButton(onClick = { navController.navigate("profile") }) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_account_circle_24),

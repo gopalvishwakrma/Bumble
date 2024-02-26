@@ -25,6 +25,7 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
+    // Column composable for arranging UI elements vertically
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -32,6 +33,7 @@ fun ProfileScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // Text composable for displaying "Profile Screen" title
         Text(
             "Profile Screen",
             style = TextStyle(
@@ -39,11 +41,14 @@ fun ProfileScreen(navController: NavHostController) {
                 fontSize = 35.sp
             )
         )
+        // Spacer composable for pushing content to the bottom
         Spacer(modifier = Modifier.weight(1f))
+        // Row composable for arranging buttons horizontally
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
+            // TextButton for navigating to the home screen
             TextButton(onClick = { navController.navigate("home") }) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_home_filled_24),
@@ -53,6 +58,7 @@ fun ProfileScreen(navController: NavHostController) {
                     colorFilter = ColorFilter.tint(LocalContentColor.current)
                 )
             }
+            // TextButton for navigating to the chat screen
             TextButton(onClick = { navController.navigate("chat") }) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_chat_24),
@@ -62,6 +68,7 @@ fun ProfileScreen(navController: NavHostController) {
                     colorFilter = ColorFilter.tint(LocalContentColor.current)
                 )
             }
+            // TextButton for navigating to the profile screen (current screen)
             TextButton(onClick = { navController.navigate("profile") }) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_account_circle_24),
